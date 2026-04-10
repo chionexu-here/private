@@ -17,6 +17,14 @@ jobs:
       issues: write
       id-token: write
     steps:
+      - uses: actions/checkout@v4
+      - name: Project Setup
+        run: |
+          npm install
       - uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          custom_instructions: |
+            This is a [to build an application that help me to manage my schedule].
+            The main files are in the /src folder.
+            Always write clean, commented code.
